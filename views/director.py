@@ -7,19 +7,14 @@ director_ns = Namespace('director')
 @director_ns.param('director_id')
 @director_ns.param('genre_id')
 @director_ns.param('year')
-class GenresView(Resource):
+class DirectorsView(Resource):
     def get(self):
         """
-        List all genres.
+        List all Directors.
         """
 
         return "", 200
 
-    def put(self):
-        """
-        Create a new genre.
-        """
-        return "", 201
 
 
 @director_ns.route('/<int:director_id>')
@@ -30,17 +25,3 @@ class MoviesView(Resource):
         """
 
         return "", 200
-
-    def put(self, director_id:int):
-        """
-        Create a new director.
-        """
-        return "", 201
-
-    def __delete__(self, director_id:int):
-        """
-        Delete a director.
-        :param director_id:
-        :return:
-        """
-        return "", 204
