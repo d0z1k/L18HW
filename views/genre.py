@@ -17,7 +17,7 @@ class GenresView(Resource):
 
 
 @genre_ns.route('/<int:genre_id>')
-class MoviesView(Resource):
+class GenreView(Resource):
     def get(self, genre_id:int):
         """
         Get a movie by id.

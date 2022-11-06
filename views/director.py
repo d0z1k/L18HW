@@ -18,7 +18,7 @@ class DirectorsView(Resource):
 
 
 @director_ns.route('/<int:director_id>')
-class MoviesView(Resource):
+class DirectorView(Resource):
     def get(self, director_id:int):
         """
         Get a director by id.
