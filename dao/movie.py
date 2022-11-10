@@ -29,6 +29,10 @@ class MovieDAO:
         movies = self.session.query(Movie).filter(Movie.year == year).all()
         return movies
 
+    def get_movie_by_many_filters(self, **kwargs):
+        movie = self.session.query(Movie).filter_by(**kwargs).all()
+        return movie
+
     def create_movie(self, **kwargs):
         try:
             self.session.add(
