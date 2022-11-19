@@ -9,10 +9,10 @@ class GenreDAO:
     def __init__(self, session):
         self.session = session
 
-    def get_all_directors(self):
+    def get_all_genres(self):
         genres = self.session.query(Genre).all()
         return genres
 
-    def get_director_by_id(self, id):
+    def get_genre_by_id(self, id):
         genre = self.session.query(Genre).filter(Genre.id == id).one()
         return genre
