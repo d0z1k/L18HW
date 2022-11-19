@@ -1,19 +1,18 @@
 from flask_restx import Resource, Namespace
 
+from service.genre import GenreService
+
 genre_ns = Namespace('genre')
 
 
 @genre_ns.route('/')
-@genre_ns.param('director_id')
-@genre_ns.param('genre_id')
-@genre_ns.param('year')
 class GenresView(Resource):
     def get(self):
         """
         List all genres.
         """
 
-        return "", 200
+        return GenreService().get_genres(), 200
 
 
 @genre_ns.route('/<int:genre_id>')
