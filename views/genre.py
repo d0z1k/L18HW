@@ -1,5 +1,6 @@
 from flask_restx import Resource, Namespace
 
+from implemented import genre_service
 from service.genre import GenreService
 
 genre_ns = Namespace('genre')
@@ -12,14 +13,14 @@ class GenresView(Resource):
         List all genres.
         """
 
-        return GenreService().get_genres(), 200
+        return genre_service.get_genres(), 200
 
 
 @genre_ns.route('/<int:genre_id>')
 class GenreView(Resource):
     def get(self, genre_id:int):
         """
-        Get a movie by id.
+        Get a genre by id.
         """
 
-        return "", 200
+        return genre_service.get_genre_by_id(genre_id), 200
