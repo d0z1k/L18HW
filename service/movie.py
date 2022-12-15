@@ -36,8 +36,8 @@ class MovieService:
     def add_movie(self, data) -> None:
         self.movie_dao.create_movie(**data)
 
-    def update(self, data) -> None:
+    def update_movie(self, data) -> None:
         self.movie_dao.update_movie(**data)
 
-    def delete(self, id) -> None:
+    def delete_movie_by_id(self, id) -> None:
         self.movie_dao.delete_movie(id)
