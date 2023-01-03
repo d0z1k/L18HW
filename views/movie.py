@@ -15,7 +15,7 @@ class MoviesView(Resource):
 
         return "", 200
 
-    def put(self):
+    def post(self):
         """
         Create a new movie.
         """
@@ -24,20 +24,20 @@ class MoviesView(Resource):
 
 @movie_ns.route('/<int:movie_id>')
 class MoviesView(Resource):
-    def get(self, movie_id:int):
+    def get(self, movie_id: int):
         """
         Get a movie by id.
         """
 
         return "", 200
 
-    def put(self, movie_id:int):
+    def put(self, movie_id: int):
         """
         Create a new movie.
         """
         return "", 201
 
-    def __delete__(self, movie_id:int):
+    def __delete__(self, movie_id: int):
         """
         Delete a movie.
         :param movie_id:
