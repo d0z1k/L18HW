@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restx import Api
 
 from config import Config
+from setup_db import db
 # from setup_db import db
 # from models import Review, Book
 # from setup_db import db
@@ -20,7 +21,7 @@ def create_app(config_object):
 
 # функция подключения расширений (Flask-SQLAlchemy, Flask-RESTx, ...)
 def register_extensions(app):
-    # db.init_app(app)
+    db.init_app(app)
     api = Api(app)
     api.add_namespace(genre_ns)
     api.add_namespace(director_ns)

@@ -10,28 +10,22 @@ class MovieDAO:
         self.session = session
 
     def get_all_movies(self):
-        movies = self.session.query(Movie).all()
-        return movies
+        return self.session.query(Movie).all()
 
     def get_movie_by_id(self, id):
-        movie = self.session.query(Movie).filter(Movie.id == id).one()
-        return movie
+        return self.session.query(Movie).filter(Movie.id == id).one()
 
     def get_movie_by_director_id(self, director_id):
-        movies = self.session.query(Movie).filter(Movie.director_id == director_id).all()
-        return movies
+        return self.session.query(Movie).filter(Movie.director_id == director_id).all()
 
     def get_movie_by_genre_id(self, genre_id):
-        movies = self.session.query(Movie).filter(Movie.genre_id == genre_id).all()
-        return movies
+        return self.session.query(Movie).filter(Movie.genre_id == genre_id).all()
 
     def get_movie_by_year(self , year):
-        movies = self.session.query(Movie).filter(Movie.year == year).all()
-        return movies
+        return self.session.query(Movie).filter(Movie.year == year).all()
 
     def get_movie_by_many_filters(self, **kwargs):
-        movie = self.session.query(Movie).filter_by(**kwargs).all()
-        return movie
+        return self.session.query(Movie).filter_by(**kwargs).all()
 
     def create_movie(self, **kwargs):
         try:

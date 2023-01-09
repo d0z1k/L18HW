@@ -1,6 +1,9 @@
 from flask_restx import Resource, Namespace
+from dao.model.schema import MovieSchema
+from implemented import movie_service
 
 movie_ns = Namespace('movie')
+movie_schema = MovieSchema(many=True)
 
 
 @movie_ns.route('/')
@@ -13,7 +16,7 @@ class MoviesView(Resource):
         List all movies.
         """
 
-        return "", 200
+        return movie_schema.dump(movie_service.get_movies()), 200
 
     def post(self):
         """
@@ -29,7 +32,7 @@ class MoviesView(Resource):
         Get a movie by id.
         """
 
-        return "", 200
+        return movie_schema.dump([movie_service.get_movie_by(movie_id)]), 200
 
     def put(self, movie_id: int):
         """

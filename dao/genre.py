@@ -10,9 +10,7 @@ class GenreDAO:
         self.session = session
 
     def get_all_genres(self):
-        genres = self.session.query(Genre).all()
-        return genres
+        return self.session.query(Genre).all()
 
     def get_genre_by_id(self, id):
-        genre = self.session.query(Genre).filter(Genre.id == id).one()
-        return genre
+        return self.session.query(Genre).filter(Genre.id == id).one()
