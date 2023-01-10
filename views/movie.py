@@ -18,11 +18,11 @@ class MoviesView(Resource):
         """
 
         if director_id := request.args.get("director_id"):
-            movie_schema.dump(movie_service.get_movies_by(director_id=director_id)), 200
+            return movie_schema.dump(movie_service.get_movie_by(director_id=director_id)), 200
         elif genre_id := request.args.get("genre_id"):
-            movie_schema.dump(movie_service.get_movies_by(genre_id=genre_id))
+            return movie_schema.dump(movie_service.get_movie_by(genre_id=genre_id))
         elif year := request.args.get("year"):
-            movie_schema.dump(movie_service.get_movie_by(year=year))
+            return movie_schema.dump(movie_service.get_movie_by(year=year))
         else:
             return movie_schema.dump(movie_service.get_movies()), 200
 
@@ -45,7 +45,7 @@ class MoviesView(Resource):
 
     def put(self, movie_id: int):
         """
-        Create a new movie.
+        Update existing movie data.
         """
         movie_service.update_movie(request.json)
         return "", 201
