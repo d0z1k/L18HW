@@ -16,9 +16,9 @@ class MovieService:
     def get_movies(self) -> List["Movie"]:
         return self.movie_dao.get_all_movies()
 
-    def get_movie_by(self, id, director_id=None, genre_id=None, year=None):
+    def get_movie_by(self, id=None, director_id=None, genre_id=None, year=None):
 
-        if director_id is None and genre_id is None and year is None:
+        if director_id is not None and genre_id is not None and year is not None:
             return self.movie_dao.get_movie_by_many_filters(
                 director_id=director_id,
                 genre_id=genre_id,

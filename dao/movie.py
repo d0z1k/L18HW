@@ -21,7 +21,7 @@ class MovieDAO:
     def get_movie_by_genre_id(self, genre_id):
         return self.session.query(Movie).filter(Movie.genre_id == genre_id).all()
 
-    def get_movie_by_year(self , year):
+    def get_movie_by_year(self, year):
         return self.session.query(Movie).filter(Movie.year == year).all()
 
     def get_movie_by_many_filters(self, **kwargs):

@@ -1,27 +1,36 @@
 from flask_restx import Resource, Namespace
 from dao.model.schema import MovieSchema
 from implemented import movie_service
+from flask import request
 
-movie_ns = Namespace('movie')
+movie_ns = Namespace('movies')
 movie_schema = MovieSchema(many=True)
 
 
 @movie_ns.route('/')
-@movie_ns.param('director_id')
-@movie_ns.param('genre_id')
-@movie_ns.param('year')
+# @movie_ns.param('director_id')
+# @movie_ns.param('genre_id')
+# @movie_ns.param('year')
 class MoviesView(Resource):
     def get(self):
         """
         List all movies.
         """
 
-        return movie_schema.dump(movie_service.get_movies()), 200
+        if director_id := request.args.get("director_id"):
+            movie_schema.dump(movie_service.get_movies_by(director_id=director_id)), 200
+        elif genre_id := request.args.get("genre_id"):
+            movie_schema.dump(movie_service.get_movies_by(genre_id=genre_id))
+        elif year := request.args.get("year"):
+            movie_schema.dump(movie_service.get_movie_by(year=year))
+        else:
+            return movie_schema.dump(movie_service.get_movies()), 200
 
     def post(self):
         """
         Create a new movie.
         """
+        movie_service.add_movie(request.json)
         return "", 201
 
 
@@ -38,6 +47,7 @@ class MoviesView(Resource):
         """
         Create a new movie.
         """
+        movie_service.update_movie(request.json)
         return "", 201
 
     def __delete__(self, movie_id: int):
@@ -46,4 +56,5 @@ class MoviesView(Resource):
         :param movie_id:
         :return:
         """
+        movie_service.delete_movie_by_id(movie_id)
         return "", 204
